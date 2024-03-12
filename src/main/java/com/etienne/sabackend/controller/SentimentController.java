@@ -36,6 +36,7 @@ public class SentimentController {
     }
 
     //code 201 created
+    @CrossOrigin
     @PostMapping()
     public ResponseEntity<Sentiment> creer(@RequestBody Sentiment sentiment) {
         if (Objects.isNull(sentiment)) {
@@ -52,7 +53,9 @@ public class SentimentController {
     }
 
     //mise a jour code 204
+
     //@ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @CrossOrigin
     @PutMapping(path = "{id}")
     public ResponseEntity<Sentiment> modifieAvis(@RequestBody Sentiment sentiment, @PathVariable int id) {
         if (Objects.isNull(sentiment)) {

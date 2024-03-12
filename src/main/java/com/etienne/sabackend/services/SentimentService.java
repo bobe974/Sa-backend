@@ -50,16 +50,17 @@ public class SentimentService {
     }
 
     public void modifie(Sentiment nouveauSentiment, Integer id) {
+        //recupere l'avis présent dans la base correspond a l'id
         Optional<Sentiment> sentimentbdd = sentimentRepository.findById(id);
-
         if (sentimentbdd.isPresent()) {
             Sentiment sentiment = sentimentbdd.get();
-            sentiment.setAvis(nouveauSentiment.getAvis());
-            sentiment.setClient(nouveauSentiment.getClient());
-            sentiment.setType(nouveauSentiment.getType());
+            sentiment.setAvis((nouveauSentiment.getAvis() != null) ? nouveauSentiment.getAvis() : sentiment.getAvis());
+            sentiment.setClient((nouveauSentiment.getClient() != null) ? nouveauSentiment.getClient() : sentiment.getClient());
+            sentiment.setType((nouveauSentiment.getType() != null) ? nouveauSentiment.getType() : sentiment.getType());
             sentimentRepository.save(sentiment);
         } else {
             throw new AvisIntrouvableException("Avis introuvable");
         }
+
     }
 }
