@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:10.7
+    volumes:
+      - db_data:/var/lib/mysql  # Créer un volume dans le répertoire mysql du conteneur
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+#defini le volume db data
+volumes:
+  db_data:
